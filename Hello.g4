@@ -1,15 +1,14 @@
 grammar Hello;
 
 program: stmt+ ;
-stmt : if_stmt | while_stmt | expression 
-				| class_field  		;
+stmt : if_stmt | while_stmt | expression | class_field  		;
 compound :  '{' stmt* '}'    						;
 while_stmt : condition '계속' compound '을 반복' 		;
 if_stmt : condition compound						;
 expression : left=NUM op right=NUM 					;
 condition : '(' expression ')' ('이라면' | '라면') 	;
 
-class_field : '|' (class_field_decl | class_field_array_decl) (',' (class_field_decl | class_field_array_decl))*| '|';
+class_field : '|' (class_field_decl | class_field_array_decl) (',' (class_field_decl | class_field_array_decl))* '|';
 class_field_decl: IDENT '<-' IDENT;
 class_field_array_decl: IDENT '<-' '[' (expression_array) ']' ;
 expression_array: (NUM | IDENT)
