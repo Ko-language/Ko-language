@@ -26,7 +26,7 @@ NUM :  '0' | [1-9] [0-9]*;
 IDENT : [a-zA-Z가-힣_]([a-zA-Z가-힣_] | [0-9])*;
 
 op : '+' | '-' | '*' | '/' | '%';
-Condition_t_node : '이라면' | '라면'; 
+Condition_t_node : '이라면' | '라면' ; 
 While_t_node_1 : '계속';
 While_t_node_2 : '을 반복';
 WS  :   (' ' | '\t' | '\r' | '\n')+ -> channel(HIDDEN);
