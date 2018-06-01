@@ -17,8 +17,8 @@ public class HelloParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
-		T__17=18, T__18=19, NUM=20, IDENT=21, WS=22;
+		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, NUM=16, IDENT=17, 
+		Condition_t_node=18, While_t_node_1=19, While_t_node_2=20, WS=21;
 	public static final int
 		RULE_program = 0, RULE_stmt = 1, RULE_compound = 2, RULE_while_stmt = 3, 
 		RULE_if_stmt = 4, RULE_expression = 5, RULE_condition = 6, RULE_class_field = 7, 
@@ -33,13 +33,14 @@ public class HelloParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'{'", "'}'", "'\uACC4\uC18D'", "'\uC744 \uBC18\uBCF5'", "'('", 
-		"')'", "'\uC774\uB77C\uBA74'", "'\uB77C\uBA74'", "'|'", "','", "'<-'", 
-		"'['", "']'", "'.'", "'+'", "'-'", "'*'", "'/'", "'%'"
+		null, "'{'", "'}'", "'('", "')'", "'|'", "','", "'<-'", "'['", "']'", 
+		"'.'", "'+'", "'-'", "'*'", "'/'", "'%'", null, null, null, "'\uACC4\uC18D'", 
+		"'\uC744 \uBC18\uBCF5'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, null, null, null, null, null, null, "NUM", "IDENT", "WS"
+		null, null, null, null, "NUM", "IDENT", "Condition_t_node", "While_t_node_1", 
+		"While_t_node_2", "WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -136,7 +137,7 @@ public class HelloParser extends Parser {
 				setState(35); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__4) | (1L << T__8) | (1L << NUM))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__2) | (1L << T__4) | (1L << NUM))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -268,7 +269,7 @@ public class HelloParser extends Parser {
 			setState(47);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__4) | (1L << T__8) | (1L << NUM))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__2) | (1L << T__4) | (1L << NUM))) != 0)) {
 				{
 				{
 				setState(44);
@@ -298,9 +299,11 @@ public class HelloParser extends Parser {
 		public ConditionContext condition() {
 			return getRuleContext(ConditionContext.class,0);
 		}
+		public TerminalNode While_t_node_1() { return getToken(HelloParser.While_t_node_1, 0); }
 		public CompoundContext compound() {
 			return getRuleContext(CompoundContext.class,0);
 		}
+		public TerminalNode While_t_node_2() { return getToken(HelloParser.While_t_node_2, 0); }
 		public While_stmtContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -329,11 +332,11 @@ public class HelloParser extends Parser {
 			setState(52);
 			condition();
 			setState(53);
-			match(T__2);
+			match(While_t_node_1);
 			setState(54);
 			compound();
 			setState(55);
-			match(T__3);
+			match(While_t_node_2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -454,6 +457,7 @@ public class HelloParser extends Parser {
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
+		public TerminalNode Condition_t_node() { return getToken(HelloParser.Condition_t_node, 0); }
 		public ConditionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -476,26 +480,17 @@ public class HelloParser extends Parser {
 	public final ConditionContext condition() throws RecognitionException {
 		ConditionContext _localctx = new ConditionContext(_ctx, getState());
 		enterRule(_localctx, 12, RULE_condition);
-		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(64);
-			match(T__4);
+			match(T__2);
 			setState(65);
 			expression();
 			setState(66);
-			match(T__5);
+			match(T__3);
 			setState(67);
-			_la = _input.LA(1);
-			if ( !(_la==T__6 || _la==T__7) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
+			match(Condition_t_node);
 			}
 		}
 		catch (RecognitionException re) {
@@ -549,7 +544,7 @@ public class HelloParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(69);
-			match(T__8);
+			match(T__4);
 			setState(72);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
@@ -569,11 +564,11 @@ public class HelloParser extends Parser {
 			setState(81);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__9) {
+			while (_la==T__5) {
 				{
 				{
 				setState(74);
-				match(T__9);
+				match(T__5);
 				setState(77);
 				_errHandler.sync(this);
 				switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
@@ -597,7 +592,7 @@ public class HelloParser extends Parser {
 				_la = _input.LA(1);
 			}
 			setState(84);
-			match(T__8);
+			match(T__4);
 			}
 		}
 		catch (RecognitionException re) {
@@ -644,7 +639,7 @@ public class HelloParser extends Parser {
 			setState(86);
 			match(IDENT);
 			setState(87);
-			match(T__10);
+			match(T__6);
 			setState(88);
 			match(IDENT);
 			}
@@ -693,15 +688,15 @@ public class HelloParser extends Parser {
 			setState(90);
 			match(IDENT);
 			setState(91);
-			match(T__10);
+			match(T__6);
 			setState(92);
-			match(T__11);
+			match(T__7);
 			{
 			setState(93);
 			expression_array(0);
 			}
 			setState(94);
-			match(T__12);
+			match(T__8);
 			}
 		}
 		catch (RecognitionException re) {
@@ -882,11 +877,11 @@ public class HelloParser extends Parser {
 			setState(112);
 			match(IDENT);
 			setState(113);
-			match(T__11);
+			match(T__7);
 			setState(114);
 			expression_array(0);
 			setState(115);
-			match(T__12);
+			match(T__8);
 			}
 		}
 		catch (RecognitionException re) {
@@ -962,7 +957,7 @@ public class HelloParser extends Parser {
 					{
 					{
 					setState(121);
-					match(T__13);
+					match(T__9);
 					setState(124);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
@@ -1053,7 +1048,7 @@ public class HelloParser extends Parser {
 				break;
 			}
 			setState(134);
-			match(T__4);
+			match(T__2);
 			setState(136);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
@@ -1065,7 +1060,7 @@ public class HelloParser extends Parser {
 			}
 
 			setState(138);
-			match(T__5);
+			match(T__3);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1117,11 +1112,11 @@ public class HelloParser extends Parser {
 			setState(145);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__9) {
+			while (_la==T__5) {
 				{
 				{
 				setState(141);
-				match(T__9);
+				match(T__5);
 				setState(142);
 				expression_array(0);
 				}
@@ -1172,7 +1167,7 @@ public class HelloParser extends Parser {
 			{
 			setState(148);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__14) | (1L << T__15) | (1L << T__16) | (1L << T__17) | (1L << T__18))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__10) | (1L << T__11) | (1L << T__12) | (1L << T__13) | (1L << T__14))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -1209,7 +1204,7 @@ public class HelloParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\30\u0099\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\27\u0099\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\3\2\6\2"+
 		"$\n\2\r\2\16\2%\3\3\3\3\3\3\3\3\5\3,\n\3\3\4\3\4\7\4\60\n\4\f\4\16\4\63"+
@@ -1220,36 +1215,36 @@ public class HelloParser extends Parser {
 		"\3\r\3\r\3\r\3\16\3\16\5\16z\n\16\3\16\3\16\3\16\5\16\177\n\16\6\16\u0081"+
 		"\n\16\r\16\16\16\u0082\3\17\3\17\5\17\u0087\n\17\3\17\3\17\5\17\u008b"+
 		"\n\17\3\17\3\17\3\20\3\20\3\20\7\20\u0092\n\20\f\20\16\20\u0095\13\20"+
-		"\3\21\3\21\3\21\2\3\26\22\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \2\5"+
-		"\3\2\t\n\3\2\26\27\3\2\21\25\2\u009a\2#\3\2\2\2\4+\3\2\2\2\6-\3\2\2\2"+
-		"\b\66\3\2\2\2\n;\3\2\2\2\f>\3\2\2\2\16B\3\2\2\2\20G\3\2\2\2\22X\3\2\2"+
-		"\2\24\\\3\2\2\2\26g\3\2\2\2\30r\3\2\2\2\32y\3\2\2\2\34\u0086\3\2\2\2\36"+
-		"\u008e\3\2\2\2 \u0096\3\2\2\2\"$\5\4\3\2#\"\3\2\2\2$%\3\2\2\2%#\3\2\2"+
-		"\2%&\3\2\2\2&\3\3\2\2\2\',\5\n\6\2(,\5\b\5\2),\5\f\7\2*,\5\20\t\2+\'\3"+
-		"\2\2\2+(\3\2\2\2+)\3\2\2\2+*\3\2\2\2,\5\3\2\2\2-\61\7\3\2\2.\60\5\4\3"+
-		"\2/.\3\2\2\2\60\63\3\2\2\2\61/\3\2\2\2\61\62\3\2\2\2\62\64\3\2\2\2\63"+
-		"\61\3\2\2\2\64\65\7\4\2\2\65\7\3\2\2\2\66\67\5\16\b\2\678\7\5\2\289\5"+
-		"\6\4\29:\7\6\2\2:\t\3\2\2\2;<\5\16\b\2<=\5\6\4\2=\13\3\2\2\2>?\7\26\2"+
-		"\2?@\5 \21\2@A\7\26\2\2A\r\3\2\2\2BC\7\7\2\2CD\5\f\7\2DE\7\b\2\2EF\t\2"+
-		"\2\2F\17\3\2\2\2GJ\7\13\2\2HK\5\22\n\2IK\5\24\13\2JH\3\2\2\2JI\3\2\2\2"+
-		"KS\3\2\2\2LO\7\f\2\2MP\5\22\n\2NP\5\24\13\2OM\3\2\2\2ON\3\2\2\2PR\3\2"+
-		"\2\2QL\3\2\2\2RU\3\2\2\2SQ\3\2\2\2ST\3\2\2\2TV\3\2\2\2US\3\2\2\2VW\7\13"+
-		"\2\2W\21\3\2\2\2XY\7\27\2\2YZ\7\r\2\2Z[\7\27\2\2[\23\3\2\2\2\\]\7\27\2"+
-		"\2]^\7\r\2\2^_\7\16\2\2_`\5\26\f\2`a\7\17\2\2a\25\3\2\2\2bc\b\f\1\2ch"+
-		"\t\3\2\2dh\5\30\r\2eh\5\32\16\2fh\5\34\17\2gb\3\2\2\2gd\3\2\2\2ge\3\2"+
-		"\2\2gf\3\2\2\2ho\3\2\2\2ij\f\6\2\2jk\5 \21\2kl\5\26\f\7ln\3\2\2\2mi\3"+
-		"\2\2\2nq\3\2\2\2om\3\2\2\2op\3\2\2\2p\27\3\2\2\2qo\3\2\2\2rs\7\27\2\2"+
-		"st\7\16\2\2tu\5\26\f\2uv\7\17\2\2v\31\3\2\2\2wz\7\27\2\2xz\5\30\r\2yw"+
-		"\3\2\2\2yx\3\2\2\2z\u0080\3\2\2\2{~\7\20\2\2|\177\5\30\r\2}\177\7\27\2"+
-		"\2~|\3\2\2\2~}\3\2\2\2\177\u0081\3\2\2\2\u0080{\3\2\2\2\u0081\u0082\3"+
-		"\2\2\2\u0082\u0080\3\2\2\2\u0082\u0083\3\2\2\2\u0083\33\3\2\2\2\u0084"+
-		"\u0087\7\27\2\2\u0085\u0087\5\32\16\2\u0086\u0084\3\2\2\2\u0086\u0085"+
-		"\3\2\2\2\u0087\u0088\3\2\2\2\u0088\u008a\7\7\2\2\u0089\u008b\5\36\20\2"+
-		"\u008a\u0089\3\2\2\2\u008a\u008b\3\2\2\2\u008b\u008c\3\2\2\2\u008c\u008d"+
-		"\7\b\2\2\u008d\35\3\2\2\2\u008e\u0093\5\26\f\2\u008f\u0090\7\f\2\2\u0090"+
-		"\u0092\5\26\f\2\u0091\u008f\3\2\2\2\u0092\u0095\3\2\2\2\u0093\u0091\3"+
-		"\2\2\2\u0093\u0094\3\2\2\2\u0094\37\3\2\2\2\u0095\u0093\3\2\2\2\u0096"+
-		"\u0097\t\4\2\2\u0097!\3\2\2\2\20%+\61JOSgoy~\u0082\u0086\u008a\u0093";
+		"\3\21\3\21\3\21\2\3\26\22\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \2\4"+
+		"\3\2\22\23\3\2\r\21\2\u009a\2#\3\2\2\2\4+\3\2\2\2\6-\3\2\2\2\b\66\3\2"+
+		"\2\2\n;\3\2\2\2\f>\3\2\2\2\16B\3\2\2\2\20G\3\2\2\2\22X\3\2\2\2\24\\\3"+
+		"\2\2\2\26g\3\2\2\2\30r\3\2\2\2\32y\3\2\2\2\34\u0086\3\2\2\2\36\u008e\3"+
+		"\2\2\2 \u0096\3\2\2\2\"$\5\4\3\2#\"\3\2\2\2$%\3\2\2\2%#\3\2\2\2%&\3\2"+
+		"\2\2&\3\3\2\2\2\',\5\n\6\2(,\5\b\5\2),\5\f\7\2*,\5\20\t\2+\'\3\2\2\2+"+
+		"(\3\2\2\2+)\3\2\2\2+*\3\2\2\2,\5\3\2\2\2-\61\7\3\2\2.\60\5\4\3\2/.\3\2"+
+		"\2\2\60\63\3\2\2\2\61/\3\2\2\2\61\62\3\2\2\2\62\64\3\2\2\2\63\61\3\2\2"+
+		"\2\64\65\7\4\2\2\65\7\3\2\2\2\66\67\5\16\b\2\678\7\25\2\289\5\6\4\29:"+
+		"\7\26\2\2:\t\3\2\2\2;<\5\16\b\2<=\5\6\4\2=\13\3\2\2\2>?\7\22\2\2?@\5 "+
+		"\21\2@A\7\22\2\2A\r\3\2\2\2BC\7\5\2\2CD\5\f\7\2DE\7\6\2\2EF\7\24\2\2F"+
+		"\17\3\2\2\2GJ\7\7\2\2HK\5\22\n\2IK\5\24\13\2JH\3\2\2\2JI\3\2\2\2KS\3\2"+
+		"\2\2LO\7\b\2\2MP\5\22\n\2NP\5\24\13\2OM\3\2\2\2ON\3\2\2\2PR\3\2\2\2QL"+
+		"\3\2\2\2RU\3\2\2\2SQ\3\2\2\2ST\3\2\2\2TV\3\2\2\2US\3\2\2\2VW\7\7\2\2W"+
+		"\21\3\2\2\2XY\7\23\2\2YZ\7\t\2\2Z[\7\23\2\2[\23\3\2\2\2\\]\7\23\2\2]^"+
+		"\7\t\2\2^_\7\n\2\2_`\5\26\f\2`a\7\13\2\2a\25\3\2\2\2bc\b\f\1\2ch\t\2\2"+
+		"\2dh\5\30\r\2eh\5\32\16\2fh\5\34\17\2gb\3\2\2\2gd\3\2\2\2ge\3\2\2\2gf"+
+		"\3\2\2\2ho\3\2\2\2ij\f\6\2\2jk\5 \21\2kl\5\26\f\7ln\3\2\2\2mi\3\2\2\2"+
+		"nq\3\2\2\2om\3\2\2\2op\3\2\2\2p\27\3\2\2\2qo\3\2\2\2rs\7\23\2\2st\7\n"+
+		"\2\2tu\5\26\f\2uv\7\13\2\2v\31\3\2\2\2wz\7\23\2\2xz\5\30\r\2yw\3\2\2\2"+
+		"yx\3\2\2\2z\u0080\3\2\2\2{~\7\f\2\2|\177\5\30\r\2}\177\7\23\2\2~|\3\2"+
+		"\2\2~}\3\2\2\2\177\u0081\3\2\2\2\u0080{\3\2\2\2\u0081\u0082\3\2\2\2\u0082"+
+		"\u0080\3\2\2\2\u0082\u0083\3\2\2\2\u0083\33\3\2\2\2\u0084\u0087\7\23\2"+
+		"\2\u0085\u0087\5\32\16\2\u0086\u0084\3\2\2\2\u0086\u0085\3\2\2\2\u0087"+
+		"\u0088\3\2\2\2\u0088\u008a\7\5\2\2\u0089\u008b\5\36\20\2\u008a\u0089\3"+
+		"\2\2\2\u008a\u008b\3\2\2\2\u008b\u008c\3\2\2\2\u008c\u008d\7\6\2\2\u008d"+
+		"\35\3\2\2\2\u008e\u0093\5\26\f\2\u008f\u0090\7\b\2\2\u0090\u0092\5\26"+
+		"\f\2\u0091\u008f\3\2\2\2\u0092\u0095\3\2\2\2\u0093\u0091\3\2\2\2\u0093"+
+		"\u0094\3\2\2\2\u0094\37\3\2\2\2\u0095\u0093\3\2\2\2\u0096\u0097\t\3\2"+
+		"\2\u0097!\3\2\2\2\20%+\61JOSgoy~\u0082\u0086\u008a\u0093";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
