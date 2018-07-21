@@ -44,10 +44,11 @@ continue_stmt : CONTINUE ;
 break_stmt : BREAK ;
 
 expression : expression op expression |
-			(IDENT|class_ident|NUM|array_ident) 
-			 					;
+			 monoOp expression | 
+			(IDENT|class_ident|NUM|array_ident) ;
 
-assignment_stmt : (IDENT|class_ident|array_ident) '<-' expression ;
+assignment_stmt : (IDENT|class_ident|array_ident) '<-' expression |
+				  (IDENT|class_ident|array_ident);
 
 if_condition : '(' expression ')' ('이라면' | '라면') 	;
 else_condition : '아니면';
@@ -67,7 +68,8 @@ IDENT : [a-zA-Z가-힣_]([a-zA-Z가-힣_] | [0-9])*;
 RETURN: '내보내기';
 CONTINUE: '다시 위로';
 BREAK: '나가기';
-op : '+' | '-' | '*' | '/' | '%' | '==' | '<' | '>';
+op : '+' | '-' | '*' | '/' | '%' | '=' | '<' | '>' | '>=' | '<=' | '그리고' | '또는' | '!=' ;
+monoOp : '!';
 
 WS  :   (' ' | '\t' | '\r' | '\n')+ -> channel(HIDDEN);
  
