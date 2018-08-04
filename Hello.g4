@@ -22,7 +22,8 @@ package_decl : '꾸러미' IDENT;
 import_decl : '가져오기' IDENT ('.' (IDENT |'*'))*;
 
 interface_decl : 	'틀' IDENT extend? interface_compound;
-interface_compound: '{' class_method* '}';
+interface_compound: '{' interface_method* '}';
+interface_method: IDENT '(' params? ')' ';';
 
 class_decl : 		'#' '['IDENT(']은'|']는'|']') extend? implement* class_compound;
 class_compound : '{' (class_static_field | class_field)* class_method*  '}';
