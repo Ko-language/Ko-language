@@ -388,6 +388,18 @@ public class HelloBaseListener implements HelloListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMonoOp(@NotNull HelloParser.MonoOpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMonoOp(@NotNull HelloParser.MonoOpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterBreak_stmt(@NotNull HelloParser.Break_stmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
