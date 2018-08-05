@@ -318,6 +318,16 @@ public interface HelloListener extends ParseTreeListener {
 	 */
 	void exitContinue_stmt(@NotNull HelloParser.Continue_stmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link HelloParser#monoOp}.
+	 * @param ctx the parse tree
+	 */
+	void enterMonoOp(@NotNull HelloParser.MonoOpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link HelloParser#monoOp}.
+	 * @param ctx the parse tree
+	 */
+	void exitMonoOp(@NotNull HelloParser.MonoOpContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link HelloParser#break_stmt}.
 	 * @param ctx the parse tree
 	 */
