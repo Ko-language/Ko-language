@@ -60,7 +60,8 @@ expression_array: (NUM | IDENT)
 				| method_call;
 				
 array_ident : IDENT '[' expression_array ']' ;
-class_ident : (IDENT | array_ident) ('.' (array_ident | IDENT))+;
+THIS : '자신';
+class_ident : (THIS | IDENT | array_ident) ('.' (array_ident | IDENT))+;
 method_call : (IDENT | class_ident) '(' args? ')' ;
 args : expression_array(',' expression_array)*;
 
