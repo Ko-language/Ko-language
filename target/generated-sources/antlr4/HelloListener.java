@@ -38,6 +38,16 @@ public interface HelloListener extends ParseTreeListener {
 	 */
 	void exitIf_stmt(@NotNull HelloParser.If_stmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link HelloParser#boolean_literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolean_literal(@NotNull HelloParser.Boolean_literalContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link HelloParser#boolean_literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolean_literal(@NotNull HelloParser.Boolean_literalContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link HelloParser#program}.
 	 * @param ctx the parse tree
 	 */
@@ -157,6 +167,16 @@ public interface HelloListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitReturn_stmt(@NotNull HelloParser.Return_stmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link HelloParser#idents}.
+	 * @param ctx the parse tree
+	 */
+	void enterIdents(@NotNull HelloParser.IdentsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link HelloParser#idents}.
+	 * @param ctx the parse tree
+	 */
+	void exitIdents(@NotNull HelloParser.IdentsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link HelloParser#if_condition}.
 	 * @param ctx the parse tree
@@ -317,6 +337,16 @@ public interface HelloListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitContinue_stmt(@NotNull HelloParser.Continue_stmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link HelloParser#monoOp}.
+	 * @param ctx the parse tree
+	 */
+	void enterMonoOp(@NotNull HelloParser.MonoOpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link HelloParser#monoOp}.
+	 * @param ctx the parse tree
+	 */
+	void exitMonoOp(@NotNull HelloParser.MonoOpContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link HelloParser#break_stmt}.
 	 * @param ctx the parse tree

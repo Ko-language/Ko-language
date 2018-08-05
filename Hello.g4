@@ -1,96 +1,214 @@
 grammar Hello;
 
-program: package_decl? import_decl* ( interface_decl | class_decl )+;
+program
+: 
+	package_decl? import_decl* ( interface_decl | class_decl )+
+;
 
-package_decl : '꾸러미' IDENT;
+package_decl
+: 
+	'꾸러미' IDENT ('.' IDENT)*
+;
 
-import_decl : '가져오기' IDENT ('.' (IDENT |'*'))*;
+import_decl 
+: 
+	'가져오기' IDENT ('.' (IDENT |'*'))*
+;
 
-interface_decl : '틀' IDENT extend? interface_compound;
+interface_decl 
+:
+	'틀' IDENT extend? interface_compound
+;
 
-interface_compound: '{' class_method* '}';
+interface_compound
+: 
+	'{' class_method* '}'
+;
 
-class_decl : '#' '['IDENT(']은'|']는'|']') extend? implement* class_compound;
+class_decl 
+: 
+	'#' '['IDENT(']은'|']는'|']') extend? implement* class_compound
+;
 
-extend:  '['IDENT(']을'|']를') '확장';
+extend
+:  
+	'['IDENT(']을'|']를') '확장'
+;
 
-implement: ', [' IDENT (',' IDENT)* (']을' | ']를') '구현';
+implement
+: 
+	', [' IDENT (',' IDENT)* (']을' | ']를') '구현'
+;
 
-class_compound : '{' (class_static_field | class_field)* class_method*  '}';
+class_compound 
+: 
+	'{' (class_static_field | class_field)* class_method*  '}'
+;
 
-class_static_field : '공용' class_field;
+class_static_field 
+: 
+	'공용' class_field
+;
 
-class_field : '|' (class_field_decl | class_field_array_decl) (',' (class_field_decl | class_field_array_decl))* '|';
+class_field 
+: 
+	'|' (class_field_decl | class_field_array_decl) (',' (class_field_decl | class_field_array_decl))* '|'
+;
 
-class_field_decl: assignment_stmt;
+class_field_decl
+: 
+	assignment_stmt
+;
 
-class_field_array_decl: IDENT '<-' '[' (expression_array) ']' ;
+class_field_array_decl
+: 
+	IDENT '<-' '[' (expression_array) ']' 
+;
 
-class_method : IDENT '(' params? ')' compound;
+class_method 
+: 
+	IDENT '(' params? ')' compound
+;
 
-params : param (',' param)*;
+params 
+: 
+	param (',' param)*
+;
 
-expression_array: (NUM | IDENT)
-				| expression_array op expression_array
-				| array_ident
-				| class_ident 
-				| method_call;
-				
-array_ident : IDENT '[' expression_array ']' ;
+compound 
+:  
+	'{' stmt* '}'  
+;
 
-class_ident : (IDENT | array_ident) ('.' (array_ident | IDENT))+;
+stmt 
+: 	if_stmt 
+	| while_stmt 
+	| assignment_stmt 
+	| return_stmt 
+	| method_call 
+	| continue_stmt 
+	| break_stmt 
+;
 
-compound :  '{' stmt* '}'  ;
+if_stmt 
+: 	
+	if_condition compound
+	| if_condition compound else_condition compound
+	| if_condition compound (else_if_condition compound)+ else_condition compound
+;
 
-stmt : 	if_stmt | 
-		while_stmt | 
-		expression | 
-		assignment_stmt |
-		return_stmt | 
-		method_call |
-		continue_stmt |
-		break_stmt ;
+if_condition 
+: 
+	'(' expression ')' ('이라면' | '라면') 	
+;
 
-if_stmt : if_condition compound
-		| if_condition compound else_condition compound
-		| if_condition compound (else_if_condition compound)+ else_condition compound;
+else_condition 
+: 
+	'아니면'
+;
 
-if_condition : '(' expression ')' ('이라면' | '라면') 	;
-
-else_condition : '아니면';
-
-else_if_condition : '혹은' if_condition;
+else_if_condition 
+: 
+	'혹은' if_condition
+;
 		
-while_stmt : if_condition '계속' compound '을 반복' ;
+while_stmt 
+: 
+	if_condition '계속' compound '을 반복' 
+;
 
-expression : expression op expression |
-			 monoOp expression | 
-			(IDENT|class_ident|NUM|array_ident|boolean_literal) ;
-			
-assignment_stmt : (IDENT|class_ident|array_ident) '<-' expression |
-				  (IDENT|class_ident|array_ident);
+expression 
+: 
+	(NUM | IDENT)
+	| boolean_literal
+	| super_prefix
+	| expression op expression 
+	| monoOp expression 
+	| expression '[' expression ']'
+	| '[' expression ']'
+	| expression '.' expression
+	| method_call
+;
+	
+super_prefix
+:
+	'부모'
+;
+		
+assignment_stmt 
+: 
+	expression '<-' expression 
+	| expression
+;
 				  
-return_stmt : expression RETURN | 
-			 RETURN ; 
+return_stmt 
+: 
+	expression RETURN 
+	| RETURN 
+; 
 
-method_call : (IDENT | class_ident) '(' args? ')' ;
+method_call 
+: 
+	expression '(' args? ')' 
+;
 
-args : expression_array(',' expression_array)*;
+args 
+	: expression(',' expression)*
+;
 
-continue_stmt : CONTINUE ;
+continue_stmt 
+: 
+	CONTINUE 
+;
 
-break_stmt : BREAK ;
+break_stmt 
+: 
+	BREAK 
+;
 
-param : IDENT;
+param 
+: 
+	IDENT
+;
 
-boolean_literal : '참' | '거짓';
+boolean_literal 
+: 
+	'참' | '거짓'
+;
 
-NUM :  '0' | [1-9] [0-9]*;
-IDENT : [a-zA-Z가-힣_]([a-zA-Z가-힣_] | [0-9])*;
-RETURN: '내보내기';
-CONTINUE: '다시 위로';
-BREAK: '나가기';
+idents 
+: 
+	IDENT
+;
+
+NUM 
+:  
+	'0' | [1-9] [0-9]*
+;
+
+IDENT 
+: 
+	[a-zA-Z가-힣_]([a-zA-Z가-힣_] | [0-9])*
+;
+
+RETURN
+: 
+	'내보내기'
+;
+
+CONTINUE
+: 
+	'다시 위로'
+;
+
+BREAK
+: 
+	'나가기'
+;
+
 op : '+' | '-' | '*' | '/' | '%' | '=' | '<' | '>' | '>=' | '<=' | '그리고' | '또는' | '!=' ;
+
 monoOp : '!';
+
 WS  :   (' ' | '\t' | '\r' | '\n')+ -> channel(HIDDEN);
  
