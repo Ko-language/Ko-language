@@ -44,7 +44,8 @@ continue_stmt : CONTINUE ;
 break_stmt : BREAK ;
 
 expression : expression op expression |
-			 monoOp expression | 
+			 prefixUnaryOP expression |
+			 expression postfixUnaryOP |
 			(IDENT|class_ident|NUM|array_ident|boolean_literal) ;
 
 assignment_stmt : (IDENT|class_ident|array_ident) '<-' expression |
@@ -72,7 +73,8 @@ RETURN: '내보내기';
 CONTINUE: '다시 위로';
 BREAK: '나가기';
 op : '+' | '-' | '*' | '/' | '%' | '=' | '<' | '>' | '>=' | '<=' | '그리고' | '또는' | '!=' ;
-monoOp : '!';
+prefixUnaryOP : '+' | '-' | '++' | '--' | '!';
+postfixUnaryOP : '++' | '--';
 
 WS  :   (' ' | '\t' | '\r' | '\n')+ -> channel(HIDDEN);
  
