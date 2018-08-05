@@ -45,7 +45,7 @@ break_stmt : BREAK ;
 
 expression : expression op expression |
 			 monoOp expression | 
-			(IDENT|class_ident|NUM|array_ident) ;
+			(IDENT|class_ident|NUM|array_ident|boolean_literal) ;
 
 assignment_stmt : (IDENT|class_ident|array_ident) '<-' expression |
 				  (IDENT|class_ident|array_ident);
@@ -63,6 +63,9 @@ array_ident : IDENT '[' expression_array ']' ;
 class_ident : (THIS | IDENT | array_ident) ('.' (array_ident | IDENT))+;
 method_call : (IDENT | class_ident) '(' args? ')' ;
 args : expression_array(',' expression_array)*;
+
+boolean_literal : '참' | '거짓';
+
 NUM :  '0' | [1-9] [0-9]*;
 IDENT : [a-zA-Z가-힣_]([a-zA-Z가-힣_] | [0-9])*;
 THIS : '자신';
