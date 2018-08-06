@@ -122,17 +122,24 @@ expression
 	(NUM | IDENT)
 	| boolean_literal
 	| super_prefix
+  | this_prefix
 	| expression op expression 
-	| monoOp expression 
+	| prefixUnaryOP expression
+  |	expression postfixUnaryOP
 	| expression '[' expression ']'
 	| '[' expression ']'
 	| expression '.' expression
-	| method_call
+	| expression '(' args? ')' 
 ;
 	
 super_prefix
 :
-	'부모'
+  PARENT
+;
+
+this_prefix
+:
+  THIS
 ;
 		
 assignment_stmt 
@@ -191,6 +198,16 @@ IDENT
 	[a-zA-Z가-힣_]([a-zA-Z가-힣_] | [0-9])*
 ;
 
+PARENT
+:
+  '부모'
+;
+
+THIS 
+: 
+  '자신'
+;
+
 RETURN
 : 
 	'내보내기'
@@ -208,7 +225,20 @@ BREAK
 
 op : '+' | '-' | '*' | '/' | '%' | '=' | '<' | '>' | '>=' | '<=' | '그리고' | '또는' | '!=' ;
 
-monoOp : '!';
+prefixUnaryOP 
+: 
+  '+' 
+  | '-' 
+  | '++' 
+  | '--' 
+  | '!'
+;
+
+postfixUnaryOP 
+: 
+  '++' 
+  | '--'
+;
 
 WS  :   (' ' | '\t' | '\r' | '\n')+ -> channel(HIDDEN);
  
