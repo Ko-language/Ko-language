@@ -52,6 +52,18 @@ public class HelloBaseListener implements HelloListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterBoolean_literal(@NotNull HelloParser.Boolean_literalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBoolean_literal(@NotNull HelloParser.Boolean_literalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterProgram(@NotNull HelloParser.ProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -191,6 +203,18 @@ public class HelloBaseListener implements HelloListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitReturn_stmt(@NotNull HelloParser.Return_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIdents(@NotNull HelloParser.IdentsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIdents(@NotNull HelloParser.IdentsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -383,6 +407,18 @@ public class HelloBaseListener implements HelloListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitContinue_stmt(@NotNull HelloParser.Continue_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMonoOp(@NotNull HelloParser.MonoOpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMonoOp(@NotNull HelloParser.MonoOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
