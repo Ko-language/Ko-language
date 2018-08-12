@@ -62,7 +62,7 @@ class_field_decl
 
 class_field_array_decl
 : 
-	IDENT '<-' '[' (expression_array) ']' 
+	IDENT '<-' '[' (expression) ']' 
 ;
 
 class_method 
