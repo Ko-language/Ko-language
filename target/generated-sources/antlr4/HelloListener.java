@@ -8,6 +8,16 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface HelloListener extends ParseTreeListener {
 	/**
+	 * Enter a parse tree produced by {@link HelloParser#postfixUnaryOP}.
+	 * @param ctx the parse tree
+	 */
+	void enterPostfixUnaryOP(@NotNull HelloParser.PostfixUnaryOPContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link HelloParser#postfixUnaryOP}.
+	 * @param ctx the parse tree
+	 */
+	void exitPostfixUnaryOP(@NotNull HelloParser.PostfixUnaryOPContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link HelloParser#import_decl}.
 	 * @param ctx the parse tree
 	 */
@@ -17,16 +27,6 @@ public interface HelloListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitImport_decl(@NotNull HelloParser.Import_declContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link HelloParser#array_ident}.
-	 * @param ctx the parse tree
-	 */
-	void enterArray_ident(@NotNull HelloParser.Array_identContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link HelloParser#array_ident}.
-	 * @param ctx the parse tree
-	 */
-	void exitArray_ident(@NotNull HelloParser.Array_identContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link HelloParser#if_stmt}.
 	 * @param ctx the parse tree
@@ -67,16 +67,6 @@ public interface HelloListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMethod_call(@NotNull HelloParser.Method_callContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link HelloParser#expression_array}.
-	 * @param ctx the parse tree
-	 */
-	void enterExpression_array(@NotNull HelloParser.Expression_arrayContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link HelloParser#expression_array}.
-	 * @param ctx the parse tree
-	 */
-	void exitExpression_array(@NotNull HelloParser.Expression_arrayContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link HelloParser#class_compound}.
 	 * @param ctx the parse tree
@@ -228,6 +218,16 @@ public interface HelloListener extends ParseTreeListener {
 	 */
 	void exitExpression(@NotNull HelloParser.ExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link HelloParser#prefixUnaryOP}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrefixUnaryOP(@NotNull HelloParser.PrefixUnaryOPContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link HelloParser#prefixUnaryOP}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrefixUnaryOP(@NotNull HelloParser.PrefixUnaryOPContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link HelloParser#interface_decl}.
 	 * @param ctx the parse tree
 	 */
@@ -238,15 +238,25 @@ public interface HelloListener extends ParseTreeListener {
 	 */
 	void exitInterface_decl(@NotNull HelloParser.Interface_declContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link HelloParser#class_ident}.
+	 * Enter a parse tree produced by {@link HelloParser#this_prefix}.
 	 * @param ctx the parse tree
 	 */
-	void enterClass_ident(@NotNull HelloParser.Class_identContext ctx);
+	void enterThis_prefix(@NotNull HelloParser.This_prefixContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link HelloParser#class_ident}.
+	 * Exit a parse tree produced by {@link HelloParser#this_prefix}.
 	 * @param ctx the parse tree
 	 */
-	void exitClass_ident(@NotNull HelloParser.Class_identContext ctx);
+	void exitThis_prefix(@NotNull HelloParser.This_prefixContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link HelloParser#super_prefix}.
+	 * @param ctx the parse tree
+	 */
+	void enterSuper_prefix(@NotNull HelloParser.Super_prefixContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link HelloParser#super_prefix}.
+	 * @param ctx the parse tree
+	 */
+	void exitSuper_prefix(@NotNull HelloParser.Super_prefixContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link HelloParser#interface_compound}.
 	 * @param ctx the parse tree
@@ -337,16 +347,6 @@ public interface HelloListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitContinue_stmt(@NotNull HelloParser.Continue_stmtContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link HelloParser#monoOp}.
-	 * @param ctx the parse tree
-	 */
-	void enterMonoOp(@NotNull HelloParser.MonoOpContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link HelloParser#monoOp}.
-	 * @param ctx the parse tree
-	 */
-	void exitMonoOp(@NotNull HelloParser.MonoOpContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link HelloParser#break_stmt}.
 	 * @param ctx the parse tree

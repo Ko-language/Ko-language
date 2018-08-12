@@ -1,4 +1,5 @@
-// Generated from Hello.g4 by ANTLR 4.7
+// Generated from Hello.g4 by ANTLR 4.4
+import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -10,99 +11,225 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface HelloVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link HelloParser#program}.
+	 * Visit a parse tree produced by {@link HelloParser#postfixUnaryOP}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitProgram(HelloParser.ProgramContext ctx);
+	T visitPostfixUnaryOP(@NotNull HelloParser.PostfixUnaryOPContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link HelloParser#stmt}.
+	 * Visit a parse tree produced by {@link HelloParser#import_decl}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitStmt(HelloParser.StmtContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link HelloParser#compound}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCompound(HelloParser.CompoundContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link HelloParser#while_stmt}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitWhile_stmt(HelloParser.While_stmtContext ctx);
+	T visitImport_decl(@NotNull HelloParser.Import_declContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link HelloParser#if_stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIf_stmt(HelloParser.If_stmtContext ctx);
+	T visitIf_stmt(@NotNull HelloParser.If_stmtContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link HelloParser#expression}.
+	 * Visit a parse tree produced by {@link HelloParser#boolean_literal}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpression(HelloParser.ExpressionContext ctx);
+	T visitBoolean_literal(@NotNull HelloParser.Boolean_literalContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link HelloParser#condition}.
+	 * Visit a parse tree produced by {@link HelloParser#program}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCondition(HelloParser.ConditionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link HelloParser#class_field}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitClass_field(HelloParser.Class_fieldContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link HelloParser#class_field_decl}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitClass_field_decl(HelloParser.Class_field_declContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link HelloParser#class_field_array_decl}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitClass_field_array_decl(HelloParser.Class_field_array_declContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link HelloParser#expression_array}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExpression_array(HelloParser.Expression_arrayContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link HelloParser#array_ident}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitArray_ident(HelloParser.Array_identContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link HelloParser#class_ident}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitClass_ident(HelloParser.Class_identContext ctx);
+	T visitProgram(@NotNull HelloParser.ProgramContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link HelloParser#method_call}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMethod_call(HelloParser.Method_callContext ctx);
+	T visitMethod_call(@NotNull HelloParser.Method_callContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link HelloParser#args}.
+	 * Visit a parse tree produced by {@link HelloParser#class_compound}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitArgs(HelloParser.ArgsContext ctx);
+	T visitClass_compound(@NotNull HelloParser.Class_compoundContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#class_field_decl}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClass_field_decl(@NotNull HelloParser.Class_field_declContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#class_method}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClass_method(@NotNull HelloParser.Class_methodContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#param}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParam(@NotNull HelloParser.ParamContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#implement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitImplement(@NotNull HelloParser.ImplementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#else_if_condition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElse_if_condition(@NotNull HelloParser.Else_if_conditionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#package_decl}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPackage_decl(@NotNull HelloParser.Package_declContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#class_field_array_decl}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClass_field_array_decl(@NotNull HelloParser.Class_field_array_declContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#return_stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturn_stmt(@NotNull HelloParser.Return_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#idents}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIdents(@NotNull HelloParser.IdentsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#if_condition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIf_condition(@NotNull HelloParser.If_conditionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#assignment_stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignment_stmt(@NotNull HelloParser.Assignment_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#while_stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhile_stmt(@NotNull HelloParser.While_stmtContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link HelloParser#op}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitOp(HelloParser.OpContext ctx);
+	T visitOp(@NotNull HelloParser.OpContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpression(@NotNull HelloParser.ExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#prefixUnaryOP}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrefixUnaryOP(@NotNull HelloParser.PrefixUnaryOPContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#interface_decl}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInterface_decl(@NotNull HelloParser.Interface_declContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#this_prefix}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitThis_prefix(@NotNull HelloParser.This_prefixContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#super_prefix}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSuper_prefix(@NotNull HelloParser.Super_prefixContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#interface_compound}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInterface_compound(@NotNull HelloParser.Interface_compoundContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#class_field}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClass_field(@NotNull HelloParser.Class_fieldContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#params}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParams(@NotNull HelloParser.ParamsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#else_condition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElse_condition(@NotNull HelloParser.Else_conditionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#compound}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCompound(@NotNull HelloParser.CompoundContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#class_static_field}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClass_static_field(@NotNull HelloParser.Class_static_fieldContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#extend}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExtend(@NotNull HelloParser.ExtendContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#args}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArgs(@NotNull HelloParser.ArgsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#continue_stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitContinue_stmt(@NotNull HelloParser.Continue_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#break_stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBreak_stmt(@NotNull HelloParser.Break_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#class_decl}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClass_decl(@NotNull HelloParser.Class_declContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStmt(@NotNull HelloParser.StmtContext ctx);
 }
