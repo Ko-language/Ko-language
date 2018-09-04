@@ -22,7 +22,12 @@ interface_decl
 
 interface_compound
 : 
-	'{' class_method* '}'
+	'{' interface_method* '}'
+;
+
+interface_method
+: 
+  IDENT '(' params? ')'
 ;
 
 class_decl 
