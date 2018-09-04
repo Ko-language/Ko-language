@@ -17,7 +17,7 @@ import_decl
 
 interface_decl 
 :
-	'틀' IDENT extend? interface_compound
+	'틀' '['IDENT(']은'|']는'|']') extend? interface_compound
 ;
 
 interface_compound
@@ -42,7 +42,7 @@ extend
 
 implement
 : 
-	', [' IDENT (',' IDENT)* (']을' | ']를') '구현'
+	','? '[' IDENT (',' IDENT)* (']을' | ']를') '구현'
 ;
 
 class_compound 
