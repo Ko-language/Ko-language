@@ -4,5 +4,4 @@ bin/
 .classpath
 .settings/
 test.c
-target/
 test/
