@@ -16,6 +16,18 @@ public class HelloBaseListener implements HelloListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPostfixUnaryOP(@NotNull HelloParser.PostfixUnaryOPContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPostfixUnaryOP(@NotNull HelloParser.PostfixUnaryOPContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterImport_decl(@NotNull HelloParser.Import_declContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -28,18 +40,6 @@ public class HelloBaseListener implements HelloListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArray_ident(@NotNull HelloParser.Array_identContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitArray_ident(@NotNull HelloParser.Array_identContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterIf_stmt(@NotNull HelloParser.If_stmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -47,6 +47,18 @@ public class HelloBaseListener implements HelloListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitIf_stmt(@NotNull HelloParser.If_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBoolean_literal(@NotNull HelloParser.Boolean_literalContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBoolean_literal(@NotNull HelloParser.Boolean_literalContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -71,18 +83,6 @@ public class HelloBaseListener implements HelloListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMethod_call(@NotNull HelloParser.Method_callContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterExpression_array(@NotNull HelloParser.Expression_arrayContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitExpression_array(@NotNull HelloParser.Expression_arrayContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -196,6 +196,18 @@ public class HelloBaseListener implements HelloListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterIdents(@NotNull HelloParser.IdentsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIdents(@NotNull HelloParser.IdentsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterIf_condition(@NotNull HelloParser.If_conditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -256,6 +268,18 @@ public class HelloBaseListener implements HelloListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPrefixUnaryOP(@NotNull HelloParser.PrefixUnaryOPContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrefixUnaryOP(@NotNull HelloParser.PrefixUnaryOPContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterInterface_decl(@NotNull HelloParser.Interface_declContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -268,13 +292,25 @@ public class HelloBaseListener implements HelloListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterClass_ident(@NotNull HelloParser.Class_identContext ctx) { }
+	@Override public void enterThis_prefix(@NotNull HelloParser.This_prefixContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitClass_ident(@NotNull HelloParser.Class_identContext ctx) { }
+	@Override public void exitThis_prefix(@NotNull HelloParser.This_prefixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSuper_prefix(@NotNull HelloParser.Super_prefixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSuper_prefix(@NotNull HelloParser.Super_prefixContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
