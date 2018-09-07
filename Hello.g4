@@ -7,17 +7,17 @@ program
 
 package_decl
 : 
-	'꾸러미' IDENT ('.' IDENT)*
+	'꾸러미' ident ('.' ident)*
 ;
 
 import_decl 
 : 
-	'가져오기' IDENT ('.' (IDENT |'*'))*
+	'가져오기' ident ('.' (ident |'*'))*
 ;
 
 interface_decl 
 :
-	'틀' '['IDENT(']은'|']는'|']') extend? interface_compound
+	'틀' '['ident(']은'|']는'|']') extend? interface_compound
 ;
 
 interface_compound
@@ -27,22 +27,22 @@ interface_compound
 
 interface_method
 : 
-  IDENT '(' params? ')'
+  ident '(' params? ')'
 ;
 
 class_decl 
 : 
-	'#' '['IDENT(']은'|']는'|']') extend? implement? class_compound
+	'#' '['ident(']은'|']는'|']') extend? implement? class_compound
 ;
 
 extend
 :  
-	'['IDENT(']을'|']를') '확장'
+	'['ident(']을'|']를') '확장'
 ;
 
 implement
 : 
-	'[' IDENT (',' IDENT)* (']을' | ']를') '구현'
+	'[' ident (',' ident)* (']을' | ']를') '구현'
 ;
 
 class_compound 
@@ -67,7 +67,7 @@ class_field_decl
 
 class_method 
 : 
-	IDENT '(' params? ')' compound
+	ident '(' params? ')' compound
 ;
 
 params 
@@ -119,7 +119,7 @@ while_stmt
 
 expression 
 : 
-	(NUM | IDENT)
+	(num | ident)
 	| boolean_literal
 	| super_prefix
   	| this_prefix
@@ -131,7 +131,17 @@ expression
 	| expression '.' expression
 	| expression '(' args? ')' 
 ;
-	
+
+num
+:
+	NUM
+;
+
+ident
+:
+	IDENT
+;
+
 super_prefix
 :
   PARENT
@@ -186,11 +196,6 @@ param
 boolean_literal 
 : 
 	'참' | '거짓'
-;
-
-idents 
-: 
-	IDENT
 ;
 
 NUM 
