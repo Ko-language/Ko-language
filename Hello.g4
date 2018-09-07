@@ -57,17 +57,12 @@ class_static_field
 
 class_field 
 : 
-	'|' (class_field_decl | class_field_array_decl) (',' (class_field_decl | class_field_array_decl))* '|'
+	'|' class_field_decl (',' class_field_decl)* '|'
 ;
 
 class_field_decl
 : 
 	assignment_stmt
-;
-
-class_field_array_decl
-: 
-	IDENT '<-' '[' (expression) ']' 
 ;
 
 class_method 
