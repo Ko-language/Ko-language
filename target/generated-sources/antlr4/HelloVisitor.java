@@ -35,6 +35,12 @@ public interface HelloVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBoolean_literal(@NotNull HelloParser.Boolean_literalContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link HelloParser#assign_symbol}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssign_symbol(@NotNull HelloParser.Assign_symbolContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link HelloParser#program}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -88,12 +94,6 @@ public interface HelloVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitPackage_decl(@NotNull HelloParser.Package_declContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link HelloParser#class_field_array_decl}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitClass_field_array_decl(@NotNull HelloParser.Class_field_array_declContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link HelloParser#return_stmt}.
 	 * @param ctx the parse tree
@@ -214,6 +214,12 @@ public interface HelloVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitContinue_stmt(@NotNull HelloParser.Continue_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#interface_method}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInterface_method(@NotNull HelloParser.Interface_methodContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link HelloParser#break_stmt}.
 	 * @param ctx the parse tree

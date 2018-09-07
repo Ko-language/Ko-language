@@ -33,8 +33,10 @@ public class main {
 		HelloLexer lexer = new HelloLexer( new ANTLRFileStream("test.c"));
 		CommonTokenStream tokens = new CommonTokenStream( lexer );
 		HelloParser parser = new HelloParser( tokens );
-		ParseTree tree = makeASTtree(parser);
+		//makeASTtree(parser);
+		ParseTree tree = parser.program();
 	        
+		new JavaBytecodeVisitor().visit(tree);
 		//new HelloBaseVisitor().visit(tree);
 		
 		/*

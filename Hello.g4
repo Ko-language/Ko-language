@@ -144,8 +144,13 @@ this_prefix
 		
 assignment_stmt 
 : 
-	expression '<-' expression 
+	expression assign_symbol expression 
 	| expression
+;
+
+assign_symbol
+:
+	'<-'
 ;
 				  
 return_stmt 
