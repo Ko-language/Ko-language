@@ -32,7 +32,7 @@ interface_method
 
 class_decl 
 : 
-	'#' '['IDENT(']은'|']는'|']') extend? implement* class_compound
+	'#' '['IDENT(']은'|']는'|']') extend? implement? class_compound
 ;
 
 extend
@@ -42,7 +42,7 @@ extend
 
 implement
 : 
-	','? '[' IDENT (',' IDENT)* (']을' | ']를') '구현'
+	'[' IDENT (',' IDENT)* (']을' | ']를') '구현'
 ;
 
 class_compound 
@@ -127,10 +127,10 @@ expression
 	(NUM | IDENT)
 	| boolean_literal
 	| super_prefix
-  | this_prefix
+  	| this_prefix
 	| expression op expression 
 	| prefixUnaryOP expression
-  |	expression postfixUnaryOP
+  	| expression postfixUnaryOP
 	| expression '[' expression ']'
 	| '[' expression ']'
 	| expression '.' expression
