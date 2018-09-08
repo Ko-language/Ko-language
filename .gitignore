@@ -1,2 +1,7 @@
 build/
 .project
+bin/
+.classpath
+.settings/
+test.c
+test/

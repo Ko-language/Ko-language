@@ -64,6 +64,18 @@ public class HelloBaseListener implements HelloListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAssign_symbol(@NotNull HelloParser.Assign_symbolContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAssign_symbol(@NotNull HelloParser.Assign_symbolContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterProgram(@NotNull HelloParser.ProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -167,18 +179,6 @@ public class HelloBaseListener implements HelloListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitPackage_decl(@NotNull HelloParser.Package_declContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterClass_field_array_decl(@NotNull HelloParser.Class_field_array_declContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitClass_field_array_decl(@NotNull HelloParser.Class_field_array_declContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -419,6 +419,18 @@ public class HelloBaseListener implements HelloListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitContinue_stmt(@NotNull HelloParser.Continue_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInterface_method(@NotNull HelloParser.Interface_methodContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInterface_method(@NotNull HelloParser.Interface_methodContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

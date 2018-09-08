@@ -48,6 +48,16 @@ public interface HelloListener extends ParseTreeListener {
 	 */
 	void exitBoolean_literal(@NotNull HelloParser.Boolean_literalContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link HelloParser#assign_symbol}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssign_symbol(@NotNull HelloParser.Assign_symbolContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link HelloParser#assign_symbol}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssign_symbol(@NotNull HelloParser.Assign_symbolContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link HelloParser#program}.
 	 * @param ctx the parse tree
 	 */
@@ -137,16 +147,6 @@ public interface HelloListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPackage_decl(@NotNull HelloParser.Package_declContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link HelloParser#class_field_array_decl}.
-	 * @param ctx the parse tree
-	 */
-	void enterClass_field_array_decl(@NotNull HelloParser.Class_field_array_declContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link HelloParser#class_field_array_decl}.
-	 * @param ctx the parse tree
-	 */
-	void exitClass_field_array_decl(@NotNull HelloParser.Class_field_array_declContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link HelloParser#return_stmt}.
 	 * @param ctx the parse tree
@@ -347,6 +347,16 @@ public interface HelloListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitContinue_stmt(@NotNull HelloParser.Continue_stmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link HelloParser#interface_method}.
+	 * @param ctx the parse tree
+	 */
+	void enterInterface_method(@NotNull HelloParser.Interface_methodContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link HelloParser#interface_method}.
+	 * @param ctx the parse tree
+	 */
+	void exitInterface_method(@NotNull HelloParser.Interface_methodContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link HelloParser#break_stmt}.
 	 * @param ctx the parse tree
