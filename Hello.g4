@@ -165,9 +165,14 @@ assign_symbol
 				  
 return_stmt 
 : 
-	expression RETURN 
-	| RETURN 
+	expression return_symbol 
+	| return_symbol 
 ; 
+
+return_symbol
+:
+	RETURN
+;
 
 method_call 
 : 
