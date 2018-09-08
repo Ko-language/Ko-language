@@ -231,12 +231,6 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 	}
 
 	@Override
-	public String visitIdents(HelloParser.IdentsContext ctx) {
-		// TODO Auto-generated method stub
-		return super.visitIdents(ctx);
-	}
-
-	@Override
 	public String visitIf_condition(HelloParser.If_conditionContext ctx) {
 		// TODO Auto-generated method stub
 		return super.visitIf_condition(ctx);
