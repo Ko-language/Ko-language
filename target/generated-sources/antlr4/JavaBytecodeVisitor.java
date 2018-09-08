@@ -16,15 +16,19 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 	@Override
 	public String visitPackage_decl(HelloParser.Package_declContext ctx) {
 		// TODO Auto-generated method stub
-		//Add "²Ù·¯¹Ì" to print out
+		//Add "ï¿½Ù·ï¿½ï¿½ï¿½" to print out
 		String str = "package ";
-		for (int i=1; i<ctx.getChildCount(); i++) {
-			str += ctx.getChild(i).getText();
-		}
+		super.visitPackage_decl(ctx);
 		System.out.println(str + ";");
-		return super.visitPackage_decl(ctx);
+		return "";
 	}
 	
+	@Override
+	public String visitDot(HelloParser.DotContext ctx) {
+		// TODO Auto-generated method stub
+		return super.visitDot(ctx);
+	}
+
 	@Override
 	public String visitImport_decl(HelloParser.Import_declContext ctx) {
 		// TODO Auto-generated method stubs
@@ -177,6 +181,31 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 		return super.visitAssignment_stmt(ctx);
 	}
 	
+	@Override
+	public String visitIdent(HelloParser.IdentContext ctx) {
+		// TODO Auto-generated method stub
+		//System.out.print(ctx.getPayload().getText());
+		return super.visitIdent(ctx);
+	}
+
+	@Override
+	public String visitNum(HelloParser.NumContext ctx) {
+		// TODO Auto-generated method stub
+		return super.visitNum(ctx);
+	}
+
+	@Override
+	public String visitAssign_symbol(HelloParser.Assign_symbolContext ctx) {
+		// TODO Auto-generated method stub
+		return super.visitAssign_symbol(ctx);
+	}
+
+	@Override
+	public String visitReturn_symbol(HelloParser.Return_symbolContext ctx) {
+		// TODO Auto-generated method stub
+		return super.visitReturn_symbol(ctx);
+	}
+
 	public boolean assignsVal(HelloParser.Assignment_stmtContext ctx) {
 		return (ctx.getChildCount() > 3);
 	}

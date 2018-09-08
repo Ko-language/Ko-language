@@ -7,12 +7,17 @@ program
 
 package_decl
 : 
-	'꾸러미' ident ('.' ident)*
+	'꾸러미' ident (dot ident)*
+;
+
+dot
+:
+	'.'
 ;
 
 import_decl 
 : 
-	'가져오기' ident ('.' (ident |'*'))*
+	'가져오기' ident (dot (ident |'*'))*
 ;
 
 interface_decl 
@@ -128,7 +133,7 @@ expression
   	| expression postfixUnaryOP
 	| expression '[' expression ']'
 	| '[' expression ']'
-	| expression '.' expression
+	| expression dot expression
 	| expression '(' args? ')' 
 ;
 
