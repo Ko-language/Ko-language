@@ -62,7 +62,13 @@ class_static_field
 
 class_field 
 : 
-	'|' class_field_decl (',' class_field_decl)* '|'
+	'|' class_field_decl (comma class_field_decl)* '|'
+;
+
+
+comma
+:
+	','
 ;
 
 class_field_decl
