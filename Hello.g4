@@ -47,7 +47,7 @@ extend
 
 implement
 : 
-	'[' ident (',' ident)* (']을' | ']를') '구현'
+	'[' ident (comma ident)* (']을' | ']를') '구현'
 ;
 
 class_compound 
@@ -83,7 +83,7 @@ class_method
 
 params 
 : 
-	param (',' param)*
+	param (comma param)*
 ;
 
 compound 
@@ -191,7 +191,7 @@ method_call
 ;
 
 args 
-	: expression(',' expression)*
+	: expression(comma expression)*
 ;
 
 continue_stmt 
