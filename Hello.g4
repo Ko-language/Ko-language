@@ -37,7 +37,12 @@ interface_method
 
 class_decl 
 : 
-	'#' '['ident(']은'|']는'|']') extend? implement? class_compound
+	pound '['ident(']은'|']는'|']') extend? implement? class_compound
+;
+
+pound
+:
+	'#'
 ;
 
 extend
@@ -146,6 +151,7 @@ expression
 	| '[' expression ']'
 	| expression dot expression
 	| expression '(' args? ')' 
+	| pound expression
 ;
 
 num
