@@ -86,6 +86,11 @@ params
 	param (comma param)*
 ;
 
+param 
+: 
+	ident
+;
+
 compound 
 :  
 	'{' stmt* '}'  
@@ -202,11 +207,6 @@ continue_stmt
 break_stmt 
 : 
 	BREAK 
-;
-
-param 
-: 
-	IDENT
 ;
 
 boolean_literal 
