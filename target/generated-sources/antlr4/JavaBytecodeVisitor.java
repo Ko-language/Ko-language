@@ -4,6 +4,8 @@ import java.util.List;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import HelloParser.Assignment_stmtContext;
+
 public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 	
 	@Override
@@ -18,14 +20,23 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 		// TODO Auto-generated method stub
 		//Add "�ٷ���" to print out
 		String str = "package ";
+		System.out.print(str);
 		super.visitPackage_decl(ctx);
-		System.out.println(str + ";");
+		System.out.println(";");
 		return "";
 	}
 	
 	@Override
+	public String visitComma(HelloParser.CommaContext ctx) {
+		// TODO Auto-generated method stub
+		System.out.print(", ");
+		return super.visitComma(ctx);
+	}
+
+	@Override
 	public String visitDot(HelloParser.DotContext ctx) {
 		// TODO Auto-generated method stub
+		System.out.print(".");
 		return super.visitDot(ctx);
 	}
 
@@ -33,21 +44,19 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 	public String visitImport_decl(HelloParser.Import_declContext ctx) {
 		// TODO Auto-generated method stubs
 		String str = "import ";
-		for (int i=1; i<ctx.getChildCount(); i++) {
-			str += ctx.getChild(i).getText();
-		}
-		System.out.println(str+";");
+		System.out.print(str);
+		super.visitImport_decl(ctx);
+		System.out.println(";");
 		
-		return super.visitImport_decl(ctx);
+		return "";
 	}
 	
 	@Override
 	public String visitInterface_decl(HelloParser.Interface_declContext ctx) {
 		// TODO Auto-generated method stub
 		//System.out.println("\nInterface decl");
-		String str = "interface " + ctx.getChild(2).getText();
-//		buf.append(str);
-		System.out.println(str);
+		String str = "interface ";
+		System.out.print(str);
 		return super.visitInterface_decl(ctx);
 	}
 	
@@ -56,7 +65,7 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 		// TODO Auto-generated method stub
 		String str = ctx.getChild(0).getText();
 //		buf.append(str);
-		System.out.println(str);
+		System.out.println("\n" + str);
 		super.visitInterface_compound(ctx);
 		System.out.println(ctx.getChild(ctx.getChildCount()-1).getText());
 		return "";
@@ -66,11 +75,15 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 	public String visitInterface_method(HelloParser.Interface_methodContext ctx) {
 		// TODO Auto-generated method stub
 //		System.out.println("Interface method");
-		String str = "public Object " 
-					+ ctx.getChild(0).getText()
-					+ ctx.getChild(1).getText();
+		String str = "public Object ";
 		System.out.print(str);
-		super.visitInterface_method(ctx);
+		visit(ctx.getChild(0)); //ident
+		System.out.print(ctx.getChild(1).getText()); // (
+		
+		if (ctx.getChildCount() > 3) {
+			visit(ctx.getChild(2));
+		}
+		
 		str = ctx.getChild((ctx.getChildCount()-1)).getText();
 		System.out.println(str+";");
 		return "";
@@ -85,26 +98,13 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 	
 	@Override
 	public String visitParams(HelloParser.ParamsContext ctx) {
-		// TODO Auto-generated method stub
-//		System.out.println("Params");
-		int numOfOffspring = ctx.getChildCount();
-		
-		System.out.print(ctx.getChild(0).getText());
-		
-		//multiple parameters
-		if (numOfOffspring != 1) {
-			for (int i=2; i<ctx.getChildCount(); i=i+2) {
-				System.out.print(", ");
-				visit(ctx.getChild(i));
-			}
-		}
-		return "";
+		// TODO Auto-generated method stub	
+		return super.visitParams(ctx);
 	}
 	
 	@Override
 	public String visitParam(HelloParser.ParamContext ctx) {
 		// TODO Auto-generated method stub
-		System.out.print(ctx.getChild(0).getText());
 		return super.visitParam(ctx);
 	}
 	
@@ -112,8 +112,8 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 	public String visitClass_decl(HelloParser.Class_declContext ctx) {
 		// TODO Auto-generated method stub
 		//System.out.println("Class decl");
-		String str = "public class " + ctx.getChild(2).getText();
-		System.out.print(str + " ");
+		String str = "public class ";
+		System.out.print(str);
 		
 		return super.visitClass_decl(ctx);
 	}
@@ -127,14 +127,10 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 //			str += ", ";
 //		}
 		
-		str += "implements " + getImplementationClassList(ctx);		
+		str += " implements " + getImplementationClassList(ctx);		
 		System.out.println(str);
-		return super.visitImplement(ctx);
+		return "";
 	}
-	
-//	public boolean afterExtends(HelloParser.ImplementContext ctx) {
-//		return (ctx.getChild(0).getText() == ",");
-//	}
 	
 	public String getImplementationClassList(HelloParser.ImplementContext ctx) {
 		//trim strings excepts class names
@@ -156,19 +152,31 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 	@Override
 	public String visitClass_field(HelloParser.Class_fieldContext ctx) {
 		// TODO Auto-generated method stub
-		System.out.print(ctx.getChild(0).getText());
-		super.visitClass_field(ctx);
-		System.out.print(ctx.getChild((ctx.getChildCount()-1)).getText());
+		//변수테이블에서 변수 관리
+//		super.visitClass_field(ctx);
+		declaresVar(ctx);
 		return "";
+	}
+	
+	public void declaresVar(HelloParser.Class_fieldContext ctx) {
+		HelloParser.Assignment_stmtContext assignCtx = (HelloParser.Assignment_stmtContext) ctx.getChild(0);
+		
+		if (assignValue(assignCtx)) {
+			
+		}
+		else { //declaration without
+			
+		}
+	}
+	
+	public boolean assignValue(HelloParser.Assignment_stmtContext ctx) {
+		return (ctx.getChildCount() == 3);
 	}
 	
 	@Override
 	public String visitClass_field_decl(HelloParser.Class_field_declContext ctx) {
 		// TODO Auto-generated method stub
 		//System.out.print("Class field decl");
-		if (classHasMultipleVar(ctx)) {
-			System.out.print(",");
-		}
 		return super.visitClass_field_decl(ctx);
 	}
 	
@@ -178,13 +186,14 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 	@Override
 	public String visitAssignment_stmt(HelloParser.Assignment_stmtContext ctx) {
 		// TODO Auto-generated method stub
-		return super.visitAssignment_stmt(ctx);
+//		return super.visitAssignment_stmt(ctx);
+		return "";
 	}
 	
 	@Override
 	public String visitIdent(HelloParser.IdentContext ctx) {
 		// TODO Auto-generated method stub
-		//System.out.print(ctx.getPayload().getText());
+		System.out.print(ctx.getPayload().getText());
 		return super.visitIdent(ctx);
 	}
 

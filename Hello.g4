@@ -37,7 +37,12 @@ interface_method
 
 class_decl 
 : 
-	'#' '['ident(']은'|']는'|']') extend? implement? class_compound
+	pound '['ident(']은'|']는'|']') extend? implement? class_compound
+;
+
+pound
+:
+	'#'
 ;
 
 extend
@@ -84,6 +89,11 @@ class_method
 params 
 : 
 	param (comma param)*
+;
+
+param 
+: 
+	ident
 ;
 
 compound 
@@ -141,6 +151,7 @@ expression
 	| '[' expression ']'
 	| expression dot expression
 	| expression '(' args? ')' 
+	| pound expression
 ;
 
 num
@@ -202,11 +213,6 @@ continue_stmt
 break_stmt 
 : 
 	BREAK 
-;
-
-param 
-: 
-	IDENT
 ;
 
 boolean_literal 
