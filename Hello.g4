@@ -153,6 +153,7 @@ expression
 	| expression dot expression
 	| expression '(' args? ')' 
 	| pound expression
+	| '"' expression '"'
 ;
 
 num
