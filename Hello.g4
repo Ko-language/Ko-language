@@ -141,6 +141,7 @@ while_stmt
 expression 
 : 
 	(num | ident)
+	| classSymbol
 	| boolean_literal
 	| super_prefix
   	| this_prefix
@@ -162,6 +163,11 @@ num
 ident
 :
 	IDENT
+;
+
+classSymbol
+:
+	POUND
 ;
 
 super_prefix
@@ -228,6 +234,11 @@ NUM
 IDENT 
 : 
 	[a-zA-Z가-힣_]([a-zA-Z가-힣_] | [0-9])*
+;
+
+POUND
+:
+	'#'
 ;
 
 PARENT
