@@ -23,11 +23,29 @@ public interface HelloVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitImport_decl(@NotNull HelloParser.Import_declContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link HelloParser#ident}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIdent(@NotNull HelloParser.IdentContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link HelloParser#if_stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitIf_stmt(@NotNull HelloParser.If_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#num}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNum(@NotNull HelloParser.NumContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#dot}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDot(@NotNull HelloParser.DotContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link HelloParser#boolean_literal}.
 	 * @param ctx the parse tree
@@ -52,6 +70,12 @@ public interface HelloVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitMethod_call(@NotNull HelloParser.Method_callContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#pound}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPound(@NotNull HelloParser.PoundContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link HelloParser#class_compound}.
 	 * @param ctx the parse tree
@@ -95,17 +119,17 @@ public interface HelloVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPackage_decl(@NotNull HelloParser.Package_declContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link HelloParser#classSymbol}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClassSymbol(@NotNull HelloParser.ClassSymbolContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link HelloParser#return_stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitReturn_stmt(@NotNull HelloParser.Return_stmtContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link HelloParser#idents}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIdents(@NotNull HelloParser.IdentsContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link HelloParser#if_condition}.
 	 * @param ctx the parse tree
@@ -136,6 +160,12 @@ public interface HelloVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitExpression(@NotNull HelloParser.ExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#return_symbol}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturn_symbol(@NotNull HelloParser.Return_symbolContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link HelloParser#prefixUnaryOP}.
 	 * @param ctx the parse tree
@@ -208,6 +238,12 @@ public interface HelloVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitArgs(@NotNull HelloParser.ArgsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#comma}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitComma(@NotNull HelloParser.CommaContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link HelloParser#continue_stmt}.
 	 * @param ctx the parse tree

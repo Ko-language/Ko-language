@@ -1,12 +1,53 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-import HelloParser.Assignment_stmtContext;
-
 public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
+	Map<String, interfaceNode> interfaceList = new HashMap<>();
+	Map<String, classNode> classList = new HashMap<>();
+	
+	class interfaceNode {
+		private List<String> abstractMethods;
+		
+		public interfaceNode() {
+			this.abstractMethods = new ArrayList<>();
+		}
+		
+		public List<String> getAbstractMethods() {
+			return this.abstractMethods;
+		}
+	}
+	
+	class classNode {
+		private List<String> classVariables;
+		private List<String> classStaticVariables;
+		private List<String> classMethods;
+		
+		public classNode() {
+			this.classMethods = new ArrayList<>();
+		}
+		
+		public List<String> getClassVariables() {
+			return this.classVariables;
+		}
+		
+		public List<String> getClassMethods() {
+			return this.classMethods;
+		}
+	}
+//	class methodInfoNode {
+//		private String methodName;
+//		private List<String> methodParams = new ArrayList<String>();
+//		
+//		public methodInfoNode(String methodName, String variable) {
+//			this.methodName = methodName;
+//			this.methodParams.add(variable);
+//		}
+//	}
 	
 	@Override
 	public String visitProgram(HelloParser.ProgramContext ctx) {
@@ -57,6 +98,7 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 		//System.out.println("\nInterface decl");
 		String str = "interface ";
 		System.out.print(str);
+		interfaceList.put(ctx.ident().getText(), null);
 		return super.visitInterface_decl(ctx);
 	}
 	
@@ -64,7 +106,6 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 	public String visitInterface_compound(HelloParser.Interface_compoundContext ctx) {
 		// TODO Auto-generated method stub
 		String str = ctx.getChild(0).getText();
-//		buf.append(str);
 		System.out.println("\n" + str);
 		super.visitInterface_compound(ctx);
 		System.out.println(ctx.getChild(ctx.getChildCount()-1).getText());
@@ -77,7 +118,17 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 //		System.out.println("Interface method");
 		String str = "public Object ";
 		System.out.print(str);
-		visit(ctx.getChild(0)); //ident
+		
+		/*
+		 * Saving information about the interface's method list
+		 */
+		String interfaceName = getInterfaceName(ctx);
+		interfaceNode interfaceNode = new interfaceNode();
+		List<String> abstractMethods = interfaceNode.getAbstractMethods();
+		abstractMethods.add(ctx.ident().getText());
+		this.interfaceList.replace(interfaceName, interfaceNode);
+		
+		visit(ctx.getChild(0)); //print out abstract method name
 		System.out.print(ctx.getChild(1).getText()); // (
 		
 		if (ctx.getChildCount() > 3) {
@@ -89,11 +140,29 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 		return "";
 	}
 
+	public String getInterfaceName(HelloParser.Interface_methodContext ctx) {
+		HelloParser.Interface_declContext interface_decl 
+			= (HelloParser.Interface_declContext) ctx.parent.parent;
+		
+		return interface_decl.ident().getText();
+	}
+	
 	@Override
 	public String visitExtend(HelloParser.ExtendContext ctx) {
 		// TODO Auto-generated method stub
-		System.out.println("Extend");
+		//System.out.println("Extend");
+		String parentClass = ctx.ident().getText();
+		
+		// Examine the existence of classes to be expanded
+		if (!isExistingClass(parentClass)) {
+			
+		}
+		
 		return super.visitExtend(ctx);
+	}
+	
+	public boolean isExistingClass(String parentClass) {
+		return this.classList.containsKey(parentClass);
 	}
 	
 	@Override
@@ -115,6 +184,8 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 		String str = "public class ";
 		System.out.print(str);
 		
+		String className = ctx.ident().getText();
+		classList.put(className, null);
 		return super.visitClass_decl(ctx);
 	}
 	
@@ -159,14 +230,15 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 	}
 	
 	public void declaresVar(HelloParser.Class_fieldContext ctx) {
-		HelloParser.Assignment_stmtContext assignCtx = (HelloParser.Assignment_stmtContext) ctx.getChild(0);
-		
-		if (assignValue(assignCtx)) {
-			
-		}
-		else { //declaration without
-			
-		}
+		//can't cast to HelloParser.Assignment_stmtContext;
+//		HelloParser.Assignment_stmtContext assignCtx = (HelloParser.Assignment_stmtContext) ctx.getChild(0);
+//		
+//		if (assignValue(assignCtx)) {
+//			
+//		}
+//		else { //declaration without assignment
+//			
+//		}
 	}
 	
 	public boolean assignValue(HelloParser.Assignment_stmtContext ctx) {
