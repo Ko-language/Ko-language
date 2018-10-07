@@ -11,13 +11,13 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 	Map<String, classNode> classList = new HashMap<>();
 	
 	class interfaceNode {
-		private List<String> abstractMethods;
+		private List<methodNode> abstractMethods;
 		
 		public interfaceNode() {
 			this.abstractMethods = new ArrayList<>();
 		}
 		
-		public List<String> getAbstractMethods() {
+		public List<methodNode> getAbstractMethods() {
 			return this.abstractMethods;
 		}
 	}
@@ -25,7 +25,7 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 	class classNode {
 		private List<String> classVariables;
 		private List<String> classStaticVariables;
-		private List<String> classMethods;
+		private List<methodNode> classMethods;
 		
 		public classNode() {
 			this.classMethods = new ArrayList<>();
@@ -35,19 +35,28 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 			return this.classVariables;
 		}
 		
-		public List<String> getClassMethods() {
+		public List<methodNode> getClassMethods() {
 			return this.classMethods;
 		}
 	}
-//	class methodInfoNode {
-//		private String methodName;
-//		private List<String> methodParams = new ArrayList<String>();
-//		
-//		public methodInfoNode(String methodName, String variable) {
-//			this.methodName = methodName;
-//			this.methodParams.add(variable);
-//		}
-//	}
+	
+	class methodNode {
+		private String methodName;
+		private int numOfParam;
+		
+		public methodNode(String methodName, int numOfParam) {
+			this.methodName = methodName;
+			this.numOfParam = numOfParam;
+		}
+		
+		public String getMethodName() {
+			return this.methodName;
+		}
+		
+		public int getNumOfParam() {
+			return this.numOfParam;
+		}
+	}
 	
 	@Override
 	public String visitProgram(HelloParser.ProgramContext ctx) {
@@ -98,10 +107,11 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 		//System.out.println("\nInterface decl");
 		String str = "interface ";
 		System.out.print(str);
-		interfaceList.put(ctx.ident().getText(), null);
+		interfaceNode emptyInterfaceNode = new interfaceNode();
+		interfaceList.put(ctx.ident().getText(), emptyInterfaceNode);
 		return super.visitInterface_decl(ctx);
 	}
-	
+
 	@Override
 	public String visitInterface_compound(HelloParser.Interface_compoundContext ctx) {
 		// TODO Auto-generated method stub
@@ -115,31 +125,66 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 	@Override
 	public String visitInterface_method(HelloParser.Interface_methodContext ctx) {
 		// TODO Auto-generated method stub
-//		System.out.println("Interface method");
 		String str = "public Object ";
 		System.out.print(str);
 		
-		/*
-		 * Saving information about the interface's method list
-		 */
-		String interfaceName = getInterfaceName(ctx);
-		interfaceNode interfaceNode = new interfaceNode();
-		List<String> abstractMethods = interfaceNode.getAbstractMethods();
-		abstractMethods.add(ctx.ident().getText());
-		this.interfaceList.replace(interfaceName, interfaceNode);
+		//save abstract method information of interface
+		saveMethodInfoOfInterface(ctx);
 		
 		visit(ctx.getChild(0)); //print out abstract method name
 		System.out.print(ctx.getChild(1).getText()); // (
 		
-		if (ctx.getChildCount() > 3) {
-			visit(ctx.getChild(2));
+
+		if (hasParameters(ctx)) {
+			declareParam(ctx);
 		}
 		
 		str = ctx.getChild((ctx.getChildCount()-1)).getText();
 		System.out.println(str+";");
 		return "";
 	}
-
+	
+	public void saveMethodInfoOfInterface(HelloParser.Interface_methodContext ctx) {
+		/*
+		 * Create a method node and store the information in the node.
+		 */
+		String methodName = getMethodName(ctx);
+		int numOfParams = getNumOfParams(ctx);
+		methodNode methodInfo = new methodNode(methodName, numOfParams);
+		
+		/* Add information 
+		 * from the corresponding abstract method 
+		 * to the existing interface information.*/
+		String interfaceName = getInterfaceName(ctx);
+		interfaceNode interfaceNode = gerInterfaceNode(interfaceName);
+		List<methodNode> abstractMethods = interfaceNode.getAbstractMethods();
+		abstractMethods.add(methodInfo);
+		this.interfaceList.replace(interfaceName, interfaceNode);
+	}
+	
+	public int getNumOfParams(HelloParser.Interface_methodContext ctx) {
+		List<HelloParser.ParamContext> params = ctx.params().param();
+		
+		return params.size();
+	}
+	
+	public boolean hasParameters(HelloParser.Interface_methodContext ctx) {
+		return getNumOfParams(ctx) > 0;
+	}
+	
+	public void declareParam(HelloParser.Interface_methodContext ctx) {
+		List<HelloParser.ParamContext> params = ctx.params().param();
+		
+		for (int i=0; i<params.size(); i++) {
+			System.out.print("Object ");
+			visit(params.get(i));
+			
+			if (i != params.size()-1) {
+				System.out.print(", ");
+			}
+		}
+	}
+	
 	public String getInterfaceName(HelloParser.Interface_methodContext ctx) {
 		HelloParser.Interface_declContext interface_decl 
 			= (HelloParser.Interface_declContext) ctx.parent.parent;
@@ -147,22 +192,43 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 		return interface_decl.ident().getText();
 	}
 	
+	public String getMethodName(HelloParser.Interface_methodContext ctx) {
+		return ctx.ident().getText();
+	}
+	
+	public interfaceNode gerInterfaceNode(String interfaceName) {
+		return this.interfaceList.get(interfaceName);
+	}
+	
 	@Override
 	public String visitExtend(HelloParser.ExtendContext ctx) {
 		// TODO Auto-generated method stub
-		//System.out.println("Extend");
-		String parentClass = ctx.ident().getText();
 		
-		// Examine the existence of classes to be expanded
-		if (!isExistingClass(parentClass)) {
+		/* 
+		 * structToExtend can be a interface or class
+		 */
+		String structToExtend = ctx.ident().getText();
+		
+		if (isInterface(ctx)) { // The target is interface
+			if (isNotExistingInterface(structToExtend)) {
+				
+			}
+		}
+		else { // The target is class
 			
 		}
-		
 		return super.visitExtend(ctx);
 	}
 	
-	public boolean isExistingClass(String parentClass) {
-		return this.classList.containsKey(parentClass);
+	public boolean isInterface(HelloParser.ExtendContext ctx) {
+		Object temp = ctx.parent.getClass();
+		Object temp2 = HelloParser.Interface_declContext.class;
+		
+		return (ctx.parent.getClass() == HelloParser.Interface_declContext.class);
+	}
+	
+	public boolean isNotExistingInterface(String interfaceName) {
+		return !this.interfaceList.containsKey(interfaceName);
 	}
 	
 	@Override
