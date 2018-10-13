@@ -71,12 +71,6 @@ public interface HelloVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMethod_call(@NotNull HelloParser.Method_callContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link HelloParser#pound}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPound(@NotNull HelloParser.PoundContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link HelloParser#class_compound}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -155,17 +149,17 @@ public interface HelloVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitOp(@NotNull HelloParser.OpContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link HelloParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExpression(@NotNull HelloParser.ExpressionContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link HelloParser#return_symbol}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitReturn_symbol(@NotNull HelloParser.Return_symbolContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link HelloParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpression(@NotNull HelloParser.ExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link HelloParser#prefixUnaryOP}.
 	 * @param ctx the parse tree
@@ -178,18 +172,6 @@ public interface HelloVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitInterface_decl(@NotNull HelloParser.Interface_declContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link HelloParser#this_prefix}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitThis_prefix(@NotNull HelloParser.This_prefixContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link HelloParser#super_prefix}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSuper_prefix(@NotNull HelloParser.Super_prefixContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link HelloParser#interface_compound}.
 	 * @param ctx the parse tree
