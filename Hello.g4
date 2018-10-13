@@ -102,7 +102,7 @@ stmt
    | method_call
    | while_stmt 
    | return_stmt
-   | continue_stmt 
+   | continue_stmt
    | break_stmt 
    | assignment_stmt 
 ;
@@ -152,7 +152,7 @@ expression
    | boolean_literal
    | expression op expression 
    | prefixUnaryOP expression
-     | expression postfixUnaryOP
+   | expression postfixUnaryOP
    | expression '[' expression ']'
    | '[' expression ']'
    | expression dot expression
@@ -178,6 +178,7 @@ classSymbol
 assignment_stmt 
 : 
    expression assign_symbol expression
+   | expression
 ;
 
 assign_symbol
