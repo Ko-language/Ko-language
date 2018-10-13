@@ -7,35 +7,36 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
+	Procedure procedure = new ProcedureImpl();
 	Map<String, interfaceNode> interfaceList = new HashMap<>();
 	Map<String, classNode> classList = new HashMap<>();
 	
 	class interfaceNode {
-		private List<methodNode> abstractMethods;
+		private Map<String, methodNode> abstractMethods;
 		
 		public interfaceNode() {
-			this.abstractMethods = new ArrayList<>();
+			this.abstractMethods = new HashMap<>();
 		}
 		
-		public List<methodNode> getAbstractMethods() {
+		public Map<String, methodNode> getAbstractMethods() {
 			return this.abstractMethods;
 		}
 	}
 	
 	class classNode {
-		private List<String> classVariables;
-		private List<String> classStaticVariables;
-		private List<methodNode> classMethods;
+		private Map<String, String> classVariables;
+		private Map<String, String> classStaticVariables;
+		private Map<String, methodNode> classMethods;
 		
 		public classNode() {
-			this.classMethods = new ArrayList<>();
+			this.classMethods = new HashMap<>();
 		}
 		
-		public List<String> getClassVariables() {
+		public Map<String, String> getClassVariables() {
 			return this.classVariables;
 		}
 		
-		public List<methodNode> getClassMethods() {
+		public Map<String, methodNode> getClassMethods() {
 			return this.classMethods;
 		}
 	}
@@ -157,8 +158,8 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 		 * to the existing interface information.*/
 		String interfaceName = getInterfaceName(ctx);
 		interfaceNode interfaceNode = gerInterfaceNode(interfaceName);
-		List<methodNode> abstractMethods = interfaceNode.getAbstractMethods();
-		abstractMethods.add(methodInfo);
+		Map<String, methodNode> abstractMethods = interfaceNode.getAbstractMethods();
+		abstractMethods.put(methodName, methodInfo);
 		this.interfaceList.replace(interfaceName, interfaceNode);
 	}
 	
@@ -201,7 +202,7 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 	}
 	
 	@Override
-	public String visitExtend(HelloParser.ExtendContext ctx) {
+	public String visitExtend(HelloParser.ExtendContext ctx) { 
 		// TODO Auto-generated method stub
 		
 		/* 
@@ -219,6 +220,7 @@ public class JavaBytecodeVisitor extends HelloBaseVisitor<String>{
 		}
 		return super.visitExtend(ctx);
 	}
+	
 	
 	public boolean isInterface(HelloParser.ExtendContext ctx) {
 		Object temp = ctx.parent.getClass();

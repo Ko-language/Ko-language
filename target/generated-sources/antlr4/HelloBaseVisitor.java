@@ -87,13 +87,6 @@ public class HelloBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitPound(@NotNull HelloParser.PoundContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
 	@Override public T visitClass_compound(@NotNull HelloParser.Class_compoundContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -185,14 +178,14 @@ public class HelloBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitExpression(@NotNull HelloParser.ExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitReturn_symbol(@NotNull HelloParser.Return_symbolContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitReturn_symbol(@NotNull HelloParser.Return_symbolContext ctx) { return visitChildren(ctx); }
+	@Override public T visitExpression(@NotNull HelloParser.ExpressionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -207,20 +200,6 @@ public class HelloBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitInterface_decl(@NotNull HelloParser.Interface_declContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitThis_prefix(@NotNull HelloParser.This_prefixContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitSuper_prefix(@NotNull HelloParser.Super_prefixContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
