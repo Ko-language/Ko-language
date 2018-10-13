@@ -4,10 +4,7 @@ import java.util.Map;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class KoLangVisitor extends HelloBaseVisitor<String>{
-//	두 테이블은 static으로 작성하는 게 좋지 않을까
 	Procedure procedure = new ProcedureImpl();
-//	ClassTable classTable = new ClassTable();
-//	InterfaceTable interfaceTable = new InterfaceTable();
 	
 	@Override
 	public String visitProgram(HelloParser.ProgramContext ctx) {
@@ -86,7 +83,7 @@ public class KoLangVisitor extends HelloBaseVisitor<String>{
 		int numOfParams = procedure.getNumOfParamsOfAbstractMethod(ctx);
 		
 		/*
-		 * This function returns the name of interface's abtract method.
+		 * This function returns the name of interface's abstract method.
 		 * 
 		 * @param ctx grammar 	context((HelloParser.Interface_methodContext)
 		 * @return String 	This returns the name of abstract method
@@ -405,7 +402,7 @@ public class KoLangVisitor extends HelloBaseVisitor<String>{
 	@Override
 	public String visitMethod_call(HelloParser.Method_callContext ctx) {
 		// TODO Auto-generated method stub
-		String currentClassName = procedure.getCurrentMethodoName(ctx);
+		String currentClassName = procedure.getCurrentClassName(ctx);
 		String currentMethodName = procedure.getCurrentMethodName(ctx);
 		
 		/*

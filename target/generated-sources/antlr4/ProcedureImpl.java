@@ -1,8 +1,58 @@
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ProcedureImpl implements Procedure{
-	ClassTable classTable = new ClassTableImpl();
-	InterfaceTable interfaceTable = new InterfaceTableImpl();
+	static Map<String, interfaceNode> interfaceList = new HashMap<>();
+	static Map<String, classNode> classList = new HashMap<>();
+	
+	class interfaceNode {
+		private Map<String, methodNode> abstractMethods;
+		
+		public interfaceNode() {
+			this.abstractMethods = new HashMap<>();
+		}
+		
+		public Map<String, methodNode> getAbstractMethods() {
+			return this.abstractMethods;
+		}
+	}
+	
+	class classNode {
+		private Map<String, String> classVariables;
+		private Map<String, String> classStaticVariables;
+		private Map<String, methodNode> classMethods;
+		
+		public classNode() {
+			this.classMethods = new HashMap<>();
+		}
+		
+		public Map<String, String> getClassVariables() {
+			return this.classVariables;
+		}
+		
+		public Map<String, methodNode> getClassMethods() {
+			return this.classMethods;
+		}
+	}
+	
+	class methodNode {
+		private String methodName;
+		private int numOfParam;
+		
+		public methodNode(String methodName, int numOfParam) {
+			this.methodName = methodName;
+			this.numOfParam = numOfParam;
+		}
+		
+		public String getMethodName() {
+			return this.methodName;
+		}
+		
+		public int getNumOfParam() {
+			return this.numOfParam;
+		}
+	}
 	
 	@Override
 	public void storeCodesImported() {
@@ -77,12 +127,6 @@ public class ProcedureImpl implements Procedure{
 	}
 
 	@Override
-	public String getCurrentMethodName(HelloParser.Class_methodContext ctx) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void saveClassMethodInfo() {
 		// TODO Auto-generated method stub
 		
@@ -107,19 +151,55 @@ public class ProcedureImpl implements Procedure{
 	}
 
 	@Override
-	public String getCurrentMethodoName(HelloParser.Method_callContext ctx) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getCurrentMethodName(HelloParser.Method_callContext ctx) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public boolean isExistingMethod(String currentClassName, String currentMethodName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public <T> String getCurrentMethodName(T ctx) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <T> String getCurrentClassName(T ctx) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <T> boolean isExistingClass(T ctx) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public <T> boolean getInterfaceNameIncludingMethod(T ctx) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public <T> boolean isInterface(T ctx) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public <T> boolean isClass(T ctx) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public <T> boolean isExistingVariable(T varName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public <T> boolean isVariableDeclWithValueAssignment(T ctx) {
 		// TODO Auto-generated method stub
 		return false;
 	}
